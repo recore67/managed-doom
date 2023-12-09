@@ -66,7 +66,8 @@ namespace ManagedDoom.Video
 
             if (config.video_highresolution)
             {
-                screen = new DrawScreen(content.Wad, 640, 400);
+                //screen = new DrawScreen(content.Wad, 640, 400);
+                screen = new DrawScreen(content.Wad, 960, 540);
             }
             else
             {
@@ -162,6 +163,12 @@ namespace ManagedDoom.Video
                     {
                         statusBar.Render(consolePlayer, false);
                     }
+                }
+
+                if (config.video_enablecrosshair)
+                {
+                    var scale = screen.Width / 320;
+                    screen.DrawCrosshair(screen.Width / 2, screen.Height / 2 - 20, scale);
                 }
 
                 if (config.video_displaymessage || ReferenceEquals(consolePlayer.Message, (string)DoomInfo.Strings.MSGOFF))

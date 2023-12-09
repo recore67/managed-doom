@@ -22,7 +22,9 @@ namespace ManagedDoom
 {
 	public sealed class DoomGame
 	{
-		private GameContent content;
+        private Config config;
+
+        private GameContent content;
 		private GameOptions options;
 
 		private GameAction gameAction;
@@ -40,14 +42,16 @@ namespace ManagedDoom
 		private int saveGameSlotNumber;
 		private string saveGameDescription;
 
-		public DoomGame(GameContent content, GameOptions options)
+		public DoomGame(GameContent content, GameOptions options, Config config = null)
 		{
 			this.content = content;
 			this.options = options;
 
 			gameAction = GameAction.Nothing;
 
-			gameTic = 0;
+            this.config = config;
+
+            gameTic = 0;
 		}
 
 
@@ -297,7 +301,7 @@ namespace ManagedDoom
 
 			options.Sound.Reset();
 
-			world = new World(content, options, this);
+			world = new World(content, options, this, config);
 
 			options.UserInput.Reset();
 		}

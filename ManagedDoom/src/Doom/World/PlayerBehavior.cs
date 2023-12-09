@@ -43,15 +43,15 @@ namespace ManagedDoom
         public static readonly int MaxMove = ForwardMove[1];
         public static readonly int SlowTurnTics = 6;
 
-
+        private Config config;
 
         private World world;
 
-        public PlayerBehavior(World world)
+        public PlayerBehavior(World world, Config config = null)
         {
             this.world = world;
+            this.config = config;
         }
-
 
 
         ////////////////////////////////////////////////////////////
@@ -307,7 +307,15 @@ namespace ManagedDoom
 
             var angle = (Trig.FineAngleCount / 20 * world.LevelTime) & Trig.FineMask;
 
-            var bob = (player.Bob / 2) * Trig.Sin(angle);
+            var bob = Fixed.Zero;
+
+            if (config != null)
+            {
+                if (!config.camera_disablebobbing)
+                {
+                    bob = (player.Bob / 2) * Trig.Sin(angle);
+                }
+            }
 
             // Move viewheight.
             if (player.PlayerState == PlayerState.Live)
@@ -401,7 +409,7 @@ namespace ManagedDoom
                     break;
 
                 case 16:
-                    // Super hell slime damage.
+                // Super hell slime damage.
                 case 4:
                     // Strobe hurt.
                     if (player.Powers[(int)PowerType.IronFeet] == 0 || (world.Random.Next() < 5))

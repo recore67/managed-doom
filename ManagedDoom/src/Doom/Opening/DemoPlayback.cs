@@ -68,7 +68,7 @@ namespace ManagedDoom
                 cmds[i] = new TicCmd();
             }
 
-            game = new DoomGame(content, demo.Options);
+            game = new DoomGame(content, demo.Options, null);
             game.DeferedInitNew();
 
             stopwatch = new Stopwatch();

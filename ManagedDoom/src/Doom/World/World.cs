@@ -21,6 +21,8 @@ namespace ManagedDoom
 {
     public sealed partial class World
     {
+        private Config config;
+
         private GameOptions options;
         private DoomGame game;
         private DoomRandom random;
@@ -64,11 +66,12 @@ namespace ManagedDoom
         // See SubstNullMobj().
         private Mobj dummy;
 
-        public World(GameContent resorces, GameOptions options, DoomGame game)
+        public World(GameContent resorces, GameOptions options, DoomGame game, Config config = null)
         {
             this.options = options;
             this.game = game;
             this.random = options.Random;
+            this.config = config;
 
             map = new Map(resorces, this);
 
@@ -83,7 +86,7 @@ namespace ManagedDoom
             hitscan = new Hitscan(this);
             visibilityCheck = new VisibilityCheck(this);
             sectorAction = new SectorAction(this);
-            playerBehavior = new PlayerBehavior(this);
+            playerBehavior = new PlayerBehavior(this, config);
             itemPickup = new ItemPickup(this);
             weaponBehavior = new WeaponBehavior(this);
             monsterBehavior = new MonsterBehavior(this);

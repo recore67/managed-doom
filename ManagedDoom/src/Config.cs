@@ -47,6 +47,8 @@ namespace ManagedDoom
         public int video_gamescreensize;
         public int video_gammacorrection;
         public int video_fpsscale;
+        public bool video_enablecrosshair;
+        public bool camera_disablebobbing;
 
         public int audio_soundvolume;
         public int audio_musicvolume;
@@ -124,7 +126,7 @@ namespace ManagedDoom
                 });
 
             mouse_sensitivity = 8;
-            mouse_disableyaxis = false;
+            mouse_disableyaxis = true;
 
             game_alwaysrun = true;
 
@@ -136,6 +138,8 @@ namespace ManagedDoom
             video_displaymessage = true;
             video_gammacorrection = 2;
             video_fpsscale = 2;
+            video_enablecrosshair = false;
+            camera_disablebobbing = false;
 
             audio_soundvolume = 8;
             audio_musicvolume = 8;
@@ -186,6 +190,8 @@ namespace ManagedDoom
                 video_gamescreensize = GetInt(dic, nameof(video_gamescreensize), video_gamescreensize);
                 video_gammacorrection = GetInt(dic, nameof(video_gammacorrection), video_gammacorrection);
                 video_fpsscale = GetInt(dic, nameof(video_fpsscale), video_fpsscale);
+                video_enablecrosshair = GetBool(dic, nameof(video_enablecrosshair), video_enablecrosshair);
+                camera_disablebobbing = GetBool(dic, nameof(camera_disablebobbing), camera_disablebobbing);
 
                 audio_soundvolume = GetInt(dic, nameof(audio_soundvolume), audio_soundvolume);
                 audio_musicvolume = GetInt(dic, nameof(audio_musicvolume), audio_musicvolume);
@@ -233,6 +239,8 @@ namespace ManagedDoom
                     writer.WriteLine(nameof(video_gamescreensize) + " = " + video_gamescreensize);
                     writer.WriteLine(nameof(video_gammacorrection) + " = " + video_gammacorrection);
                     writer.WriteLine(nameof(video_fpsscale) + " = " + video_fpsscale);
+                    writer.WriteLine(nameof(video_enablecrosshair) + " = " + BoolToString(video_enablecrosshair));
+                    writer.WriteLine(nameof(camera_disablebobbing) + " = " + BoolToString(camera_disablebobbing));
 
                     writer.WriteLine(nameof(audio_soundvolume) + " = " + audio_soundvolume);
                     writer.WriteLine(nameof(audio_musicvolume) + " = " + audio_musicvolume);

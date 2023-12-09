@@ -247,6 +247,43 @@ namespace ManagedDoom.Video
             }
         }
 
+        public void DrawCrosshair(int x, int y, int scale)
+        {
+            string text = ".";
+
+            var drawX = x;
+            var drawY = y - 7 * scale;
+            foreach (var ch in text)
+            {
+                if (ch >= chars.Length)
+                {
+                    continue;
+                }
+
+                if (ch == 32)
+                {
+                    drawX += 4 * scale;
+                    continue;
+                }
+
+                var index = (int)ch;
+                if ('a' <= index && index <= 'z')
+                {
+                    index = index - 'a' + 'A';
+                }
+
+                var patch = chars[index];
+                if (patch == null)
+                {
+                    continue;
+                }
+
+                DrawPatch(patch, drawX, drawY, scale);
+
+                drawX += scale * patch.Width;
+            }
+        }
+
         public int MeasureChar(char ch, int scale)
         {
             if (ch >= chars.Length)
