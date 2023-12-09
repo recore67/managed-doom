@@ -1,6 +1,6 @@
 # Managed Doom
 
-this is your favourite [managed-doom]([GitHub - sinshu/managed-doom: A Doom port written in C Sharp](https://github.com/sinshu/managed-doom)) with a few additions (inefficient as if currently)
+this is your favourite [managed-doom](https://github.com/sinshu/managed-doom) with a few additions (inefficient as if currently)
 
 Features of this fork:
 
